@@ -1,6 +1,7 @@
+notifications:
+  email: false
 sudo: required
 language: node_js
-cache: npm
 node_js:
   - 12
 cache:
