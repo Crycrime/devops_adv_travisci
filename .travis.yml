@@ -5,5 +5,5 @@ before_install:
   - docker build -t devops/adv:latest .
 #  - docker login -u $DOCKER_USER -p $DOCKER_PASS
 #  - docker push devops_adv:latest
-  - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
   - docker push crycrime/devops_adv
