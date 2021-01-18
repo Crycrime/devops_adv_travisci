@@ -4,4 +4,4 @@ services:
 before_install:
   - docker build -t devops/adv .
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - docker push devops/adv:$BUILD_NUMBER
+  - docker push devops/adv:latest
