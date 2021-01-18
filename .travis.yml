@@ -10,7 +10,7 @@ services:
   - docker
 
 script:
-  - docker build -t devops-adv:latest .
+  - docker build -t devops_adv:latest .
   - docker images
 
 deploy:
