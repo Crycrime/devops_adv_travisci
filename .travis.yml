@@ -1,9 +1,20 @@
 sudo: required
+language: node_js
+node_js:
+  - 12
+cache:
+  directories:
+    - node_modules
+
 services:
   - docker
-before_install:
-  - docker build -t devops/adv:latest .
-#  - docker login -u $DOCKER_USER -p $DOCKER_PASS
-#  - docker push devops_adv:latest
-  - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-  - docker push crycrime/devops_adv
+
+script:
+  - docker build -t devops-adv:latest .
+  - docker images
+
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
