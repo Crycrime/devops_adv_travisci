@@ -1,4 +1,4 @@
 #!/bin/bash
 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-docker tag devops-adv crycrime/devops-adv:latest
+docker tag devops_adv crycrime/devops_adv:latest
 docker push crycrime/devops_adv
