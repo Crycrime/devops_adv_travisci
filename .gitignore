@@ -1,0 +1,6 @@
+*.bak
+.*
+!.gitignore
+!.travis.yml
+*.tfstate
+*.tfstate.*
