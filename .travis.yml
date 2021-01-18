@@ -1,38 +1,9 @@
-pipeline {
-  environment {
-    registry = "crycrime/devops_adv"
-    registryCredential = 'dockerhub'
-    dockerImage = ''
-  }
-
-  agent any
-
-  stages {
-    stage('Checkout code') {
-        steps {
-            checkout scm
-        }
-    }
-    stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
-      }
-    }
-    stage('Deploy Image') {
-      steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-          }
-        }
-      }
-    }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
-      }
-    }
-  }
-}
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t devops/adv:latest .
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - docker push devops_adv:latest
+#  echo "$DOCKER_PASS" | docker login -u "$DOCKER_USERNAME" --password-stdin
+#  docker push crycrime/devops_adv
